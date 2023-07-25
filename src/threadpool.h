@@ -42,7 +42,7 @@ private:
     std::mutex              taskQueMtx_; // 互斥锁，保证任务队列线程安全
     std::condition_variable notFull_;    // 条件变量，任务队列未满
     std::condition_variable notEmpty_;   // 条件变量，任务队列非空
-    std::condition_variable exitCond_;   // 等到线程资源全部回收
+    std::condition_variable exitCond_;   // 等待线程资源全部回收
 
     PoolMode         poolMode_;          // 当前线程池的工作模式
     std::atomic_bool isPoolRunning_;     // 表示当前线程池的启动状态
