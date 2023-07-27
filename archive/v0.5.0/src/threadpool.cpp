@@ -72,7 +72,7 @@ Result ThreadPool::submitTask(std::shared_ptr<Task> sp) {
     /** cached 模式
      * 适用场景：任务处理比较紧急，小而快的任务
      * 不适用耗时的任务，长时间占用线程，导致系统线程创建过多
-     * 比较根据任务数量和空闲线程数量，判断是否需要创建新的线程
+     * 需要根据任务数量和空闲线程数量，判断是否需要创建新的线程
      */
 
     // 线程池工作在 cached 模式 && 任务数量大于空闲线程数量 &&
@@ -82,12 +82,14 @@ Result ThreadPool::submitTask(std::shared_ptr<Task> sp) {
 
         std::cout << ">>> create new thread..." << std::endl;
 
-        // 创建新线程
+        // 创建新的线程对象
         std::unique_ptr<Thread> ptr = std::make_unique<Thread>(
             std::bind(&ThreadPool::threadFunc, this, std::placeholders::_1));
         int threadId = ptr->getId();
         threads_.emplace(threadId, std::move(ptr));
+        // 启动线程
         threads_[threadId]->start();
+        // 修改线程个数相关变量
         curThreadSize_++;
         idleThreadSize_++;
     }

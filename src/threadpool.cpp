@@ -139,7 +139,7 @@ void ThreadPool::threadFunc(int threadid) {
             // 先获取锁
             std::unique_lock<std::mutex> lock(taskQueMtx_);
 
-            std::cout << "tid:" << std::this_thread::get_id() << "尝试获取任务..." << std::endl;
+            std::cout << "tid:" << std::this_thread::get_id() << " 尝试获取任务..." << std::endl;
 
             // cached模式下，有可能已经创建了很多的线程，但是空闲时间超过60s，应该把多余的线程
             // 结束回收掉（超过initThreadSize_数量的线程要进行回收）
@@ -186,7 +186,7 @@ void ThreadPool::threadFunc(int threadid) {
 
             idleThreadSize_--;
 
-            std::cout << "tid:" << std::this_thread::get_id() << "获取任务成功..." << std::endl;
+            std::cout << "tid:" << std::this_thread::get_id() << " 获取任务成功..." << std::endl;
 
             // 从任务队列取一个任务
             task = taskQue_.front();

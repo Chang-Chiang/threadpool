@@ -34,11 +34,20 @@ $ chmod +x autobuild.sh
 $ sudo ./autobuild.sh
 ```
 
+### Test
+
+```bash
+$ cd example
+$ g++ test.cpp -std=c++17 -lthreadpool -lpthread
+$ ./a.out
+```
+
 ### Uninstall
 
 ```bash
 # 如果编译的静态库安装在系统目录下则卸载时将其删除
-$ rm 
+$ sudo rm -rf /usr/include/threadpool
+$ sudo rm /usr/lib/libthreadpool.so
 ```
 
 ## Usage
@@ -78,13 +87,11 @@ Result res1 = pool.submitTask(std::make_shared<MyTask>(1, 100000000));
 ## Docs
 
 - [整体架构设计](./docs/整体架构设计.md)
-
 - [线程池类代码设计](./docs/线程池类代码设计.md)
-
 - [线程类代码设计](./docs/线程类代码设计.md)
-
 - [Any 类设计](./docs/Any类设计.md)
-
+- [信号量类设计](./docs/信号量类设计.md)
 - [任务基类设计](./docs/任务基类设计.md)
-
 - [线程执行返回值类设计](./docs/线程执行返回值类设计.md)
+- [死锁问题记录](./docs/死锁问题记录.md)
+- [gdb 调试死锁问题](./docs/gdb调试死锁问题.md)

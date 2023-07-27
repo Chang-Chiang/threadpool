@@ -19,21 +19,21 @@ cd `pwd`/build &&
 # 回到项目根目录
 cd ..
 
-# # 把头文件拷贝到 /usr/include/threadpool  so库拷贝到 /usr/lib (系统环境变量 PATH)
+# 把头文件拷贝到 /usr/include/threadpool  so库拷贝到 /usr/lib (系统环境变量 PATH)
 
-# if [ ! -d /usr/include/threadpool ]; then 
-#     mkdir /usr/include/threadpool
-# fi
+if [ ! -d /usr/include/threadpool ]; then 
+    mkdir /usr/include/threadpool
+fi
 
-# cd `pwd`/include
+cd `pwd`/src
 
-# # 拷贝 .hpp .h 文件
-# for header in `ls *.hpp *.h`
-# do
-#     cp $header /usr/include/threadpool
-# done
+# 拷贝 .hpp .h 文件
+for header in `ls *.hpp *.h`
+do
+    cp $header /usr/include/threadpool
+done
 
-# cd ..
-# cp `pwd`/lib/libthreadpool.so /usr/lib
+cd ..
+cp `pwd`/lib/libthreadpool.so /usr/lib
 
-# ldconfig
+ldconfig
